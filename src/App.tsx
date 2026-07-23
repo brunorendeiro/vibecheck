@@ -1,4 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { getStoredConsent, loadAnalytics } from './analytics'
+import CookieConsent from './CookieConsent'
 
 type Stage = 'intro' | 'quiz' | 'result'
 type Scores = Record<string, number>
@@ -97,6 +99,10 @@ export default function App() {
   const [scores, setScores] = useState<Scores>(() => Object.fromEntries(questions.map(question => [question.id, 50])))
   const [history, setHistory] = useState<HistoryItem[]>(loadHistory)
   const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    if (getStoredConsent() === 'granted') loadAnalytics()
+  }, [])
 
   const score = useMemo(() => Math.round(questions.reduce((total, question) => total + scores[question.id] * question.weight, 0)), [scores])
   const result = resultFor(score)
@@ -211,6 +217,12 @@ export default function App() {
       </section>
     </main>}
 
-    <footer><span>Feito para pessoas com demasiadas ideias.</span><span>Sem contas · Sem julgamentos sérios</span></footer>
+    <footer>
+      <span>Feito para pessoas com demasiadas ideias.</span>
+      <span>Sem contas · Sem julgamentos sérios</span>
+      <a href="https://vibe-portfolio-one.vercel.app/" target="_blank" rel="noreferrer">Created by Bruno Rendeiro</a>
+      <span className="powered-badge">⚡ Powered by AI</span>
+    </footer>
+    <CookieConsent />
   </div>
 }
