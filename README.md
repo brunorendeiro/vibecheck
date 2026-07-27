@@ -56,3 +56,18 @@ AGENTS.md         regras para o agente dedicado à app
 - Avaliar uma análise opcional com IA, sem a tornar obrigatória
 
 O README deve ser atualizado sempre que o comportamento, arquitetura ou prioridades da app mudarem.
+
+## Nota técnica — Google Analytics
+
+O Analytics só é carregado depois de o utilizador aceitar os cookies. A função
+`gtag` deve enviar o objeto nativo `arguments` para `dataLayer`:
+
+```js
+function gtag() {
+  dataLayer.push(arguments)
+}
+```
+
+Não substituir por `dataLayer.push(args)` com um rest parameter (`...args`):
+apesar de o script da Google carregar, o comando `config` e o `page_view` podem
+não ser processados.
