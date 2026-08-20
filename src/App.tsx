@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { getStoredConsent, loadAnalytics } from './analytics'
+import { getStoredConsent, loadAnalytics, loadAds } from './analytics'
 import CookieConsent from './CookieConsent'
 
 type Stage = 'intro' | 'quiz' | 'result'
@@ -101,7 +101,10 @@ export default function App() {
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    if (getStoredConsent() === 'granted') loadAnalytics()
+    if (getStoredConsent() === 'granted') {
+      loadAnalytics()
+      loadAds()
+    }
   }, [])
 
   const score = useMemo(() => Math.round(questions.reduce((total, question) => total + scores[question.id] * question.weight, 0)), [scores])
