@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { getStoredConsent, loadAnalytics, loadAds } from './analytics'
 import CookieConsent from './CookieConsent'
+import Sobre from './pages/Sobre'
+import Privacidade from './pages/Privacidade'
+import AdSlot from './AdSlot'
 
 type Stage = 'intro' | 'quiz' | 'result'
 type Scores = Record<string, number>
@@ -111,6 +114,9 @@ export default function App() {
   const result = resultFor(score)
   const question = questions[questionIndex]
 
+  if (window.location.pathname === '/sobre') return <Sobre />
+  if (window.location.pathname === '/privacidade') return <Privacidade />
+
   const start = () => {
     if (!idea.trim()) return
     setStage('quiz')
@@ -218,11 +224,14 @@ export default function App() {
           <button className="again-button" onClick={reset}>Testar outra ideia</button>
         </div>
       </section>
+      <AdSlot />
     </main>}
 
     <footer>
       <span>Feito para pessoas com demasiadas ideias.</span>
       <span>Sem contas · Sem julgamentos sérios</span>
+      <a href="/sobre">Como funciona</a>
+      <a href="/privacidade">Privacidade</a>
       <a href="https://vibe-portfolio-one.vercel.app/" target="_blank" rel="noreferrer">Created by Bruno Rendeiro</a>
       <span className="powered-badge">⚡ Powered by AI</span>
     </footer>

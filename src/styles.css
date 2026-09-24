@@ -163,6 +163,22 @@ footer a:hover { color: var(--ink); }
   footer { gap: 15px; flex-direction: column; }
 }
 
+.doc-page { width: min(760px, calc(100% - 48px)); flex: 1; margin: 0 auto; padding: 60px 0 90px; }
+.doc-page article { padding: clamp(30px, 6vw, 60px); border: 2px solid var(--ink); background: white; box-shadow: 8px 8px 0 var(--ink); }
+.doc-page h1 { margin: 20px 0 25px; font-size: clamp(34px, 5vw, 48px); line-height: 1.05; letter-spacing: -.055em; }
+.doc-page h2 { margin: 38px 0 12px; font-size: 21px; letter-spacing: -.03em; }
+.doc-page p, .doc-page li { color: #3f3b35; font-size: 15px; line-height: 1.7; }
+.doc-page ul { margin: 10px 0; padding-left: 20px; }
+.doc-page li { margin: 10px 0; }
+.doc-page li strong { color: var(--ink); }
+.doc-page a { color: var(--purple); }
+.doc-page code { padding: 2px 5px; border: 1px solid #e3ddd2; border-radius: 3px; background: #f1ecE2; font: 12px 'DM Mono'; }
+.doc-updated { margin-top: -12px; color: #817a70; font: 10px 'DM Mono'; text-transform: uppercase; letter-spacing: .06em; }
+.back-link { display: inline-block; margin-top: 38px; font: 500 12px 'DM Mono'; text-decoration: underline; }
+
+.ad-slot { margin: 40px 0 0; padding: 14px; border: 1.5px dashed #c9c2b6; }
+.ad-label { display: block; margin-bottom: 8px; color: #a39c8f; font: 9px 'DM Mono'; text-transform: uppercase; letter-spacing: .1em; text-align: center; }
+
 .cookie-consent { position: fixed; z-index: 50; left: 20px; right: 20px; bottom: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; max-width: 640px; margin: 0 auto; padding: 18px 20px; border: 2px solid var(--ink); background: white; box-shadow: 6px 6px 0 var(--ink); }
 .cookie-consent p { flex: 1 1 260px; margin: 0; font-size: 13px; }
 .cookie-actions { display: flex; gap: 10px; }
